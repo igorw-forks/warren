@@ -119,11 +119,16 @@ module Warren
     # Changes all keys into symbols
     #
     def symbolize_keys(hash)
+      new_hash = {}
+
       hash.each do |key, value|
         hash.delete(key)
         # Make it recursive
-        hash[key.to_sym] = (value.is_a?(Hash) ? symbolize_keys(value) : value)
+        new_hash[key.to_sym] = (value.is_a?(Hash) ? symbolize_keys(value) : value)
       end
+
+      hash.merge! new_hash
+
       hash
     end
 
