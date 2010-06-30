@@ -42,7 +42,7 @@ class Warren::Queue::AMQPAdapter < Warren::Queue
     # Create a message object if it isn't one already
     msg = Warren::MessageFilter.pack(payload)
 
-    do_connect(true, blk) do
+    do_connect(false, blk) do
       queue = MQ::Queue.new(MQ.new, queue_name)
       queue.publish msg.to_s
     end
