@@ -122,14 +122,11 @@ module Warren
       new_hash = {}
 
       hash.each do |key, value|
-        hash.delete(key)
         # Make it recursive
         new_hash[key.to_sym] = (value.is_a?(Hash) ? symbolize_keys(value) : value)
       end
 
-      hash.merge! new_hash
-
-      hash
+      new_hash
     end
 
     #
